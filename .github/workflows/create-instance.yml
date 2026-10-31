@@ -23,6 +23,12 @@ jobs:
         run: |
           printf '%s' "$OCI_PRIVATE_KEY" > /tmp/oci_key.pem
           chmod 600 /tmp/oci_key.pem
+          echo "=== PEM FILE CONTENT ==="
+          cat /tmp/oci_key.pem
+          echo "=== PEM FILE LINES ==="
+          wc -l /tmp/oci_key.pem
+          echo "=== OPENSSL CHECK ==="
+          openssl pkey -in /tmp/oci_key.pem -noout -text 2>&1 | head -5
         env:
           OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
 
