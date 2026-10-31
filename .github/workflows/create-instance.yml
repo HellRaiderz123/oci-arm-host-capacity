@@ -27,15 +27,7 @@ jobs:
           OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
 
       - name: Run instance creation
-        run: |
-          echo "REGION first5: ${OCI_REGION:0:5}"
-          echo "USER first15: ${OCI_USER_ID:0:15}"
-          echo "TENANCY first15: ${OCI_TENANCY_ID:0:15}"
-          echo "FINGERPRINT first5: ${OCI_KEY_FINGERPRINT:0:5}"
-          echo "SUBNET first15: ${OCI_SUBNET_ID:0:15}"
-          echo "IMAGE first15: ${OCI_IMAGE_ID:0:15}"
-          echo "AD: $OCI_AVAILABILITY_DOMAIN"
-          php index.php
+        run: php index.php
         env:
           OCI_REGION: ${{ secrets.OCI_REGION }}
           OCI_USER_ID: ${{ secrets.OCI_USER_ID }}
