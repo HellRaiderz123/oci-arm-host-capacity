@@ -21,8 +21,10 @@ jobs:
 
       - name: Write PEM key to file
         run: |
-          echo "${{ secrets.OCI_PRIVATE_KEY }}" > /tmp/oci_key.pem
+          printf '%s' "$OCI_PRIVATE_KEY" > /tmp/oci_key.pem
           chmod 600 /tmp/oci_key.pem
+        env:
+          OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
 
       - name: Run instance creation
         run: php index.php
